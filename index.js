@@ -25,7 +25,7 @@ async function run() {
       }, githubToken);
 
 
-    core.setOutput(shaKey, branchKey);
+    core.setOutput('result', branchKey);
 
 
   } catch (error) {
