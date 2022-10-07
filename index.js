@@ -1,6 +1,5 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const wait = require('./wait');
 
 
 // most @actions toolkit packages have async methods
@@ -13,6 +12,11 @@ async function run() {
       const repository = core.getInput('repository');
       const branch = core.getInput('branch');
 
+      core.info({
+          owner : owner,
+          repo:repository,
+          'branch':branch
+      });
 
     const {sha:branchKey} = await getTopShaTag({
            owner : owner,
@@ -22,6 +26,7 @@ async function run() {
 
 
     core.setOutput(shaKey, branchKey);
+
 
   } catch (error) {
     core.error(error.message);
