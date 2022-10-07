@@ -9,7 +9,7 @@ async function run() {
         const owner = core.getInput('owner');
         const repository = core.getInput('repository');
         const head = core.getInput('head');
-        const base = core.getInput('head');
+        const base = core.getInput('base');
         const mainBranchKey = core.getInput('mainBranchKey');
         await github.getOctokit(githubToken).request('POST /repos/' + owner + '/' + repository + '/pulls', {
             head:head,
