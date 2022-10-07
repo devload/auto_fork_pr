@@ -12,10 +12,7 @@ jobs:
         uses: ./ # 루트 디렉토리에 있는 액션을 사용하라는 의미이다.
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          targetOwner: onycom-imqa
-          targetRepository: IMQA-Android-Core
-          targetBranch: master
-          prOwner: onycom-imqa
-          prRepository: IMQA-Android-Core_QA
-          prBranch: master
-          prBaseBranch: prod
+          owner: onycom-imqa
+          repository: IMQA-Android-Core
+          branch: master
+          shaKey: upstreamRepoKey
