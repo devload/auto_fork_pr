@@ -1,7 +1,22 @@
 name: 'Auto_Fork_PR_Generator'
 description: 'Auto Fork PR Generator'
 inputs:
-  github-token:
+  githubToken:
+    description: 'github token'
+    required: true
+  owner:
+    description: 'github token'
+    required: true
+  repository:
+    description: 'github token'
+    required: true
+  head:
+    description: 'github token'
+    required: true
+  base:
+    description: 'github token'
+    required: true
+  mainBranchKey:
     description: 'github token'
     required: true
 outputs:
