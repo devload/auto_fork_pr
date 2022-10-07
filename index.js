@@ -7,47 +7,21 @@ const wait = require('./wait');
 async function run() {
   try {
 
+      const shaKey = core.getInput('shaKey');
       const githubToken = core.getInput('githubToken');
-      const targetOwner = core.getInput('targetOwner');
-      const targetRepository = core.getInput('targetRepository');
-      const targetBranch = core.getInput('targetBranch');
+      const owner = core.getInput('owner');
+      const repository = core.getInput('repository');
+      const branch = core.getInput('branch');
 
-      const prOwner = core.getInput('prOwner');
-      const prRepository = core.getInput('prRepository');
-      const prBranch = core.getInput('prBranch');
-      const prBaseBranch = core.getInput('prBaseBranch');
 
-    const {sha:mainBranchKey} = await getTopShaTag({
-           owner : targetOwner,
-           repo:targetRepository,
-           branch:targetBranch
+    const {sha:branchKey} = await getTopShaTag({
+           owner : owner,
+           repo:repository,
+           'branch':branch
       }, githubToken);
 
-    const {sha:forkBranchKey, octokit:forkBranchOctokit} = await getTopShaTag({
-          owner : prOwner,
-          repo:prRepository,
-          branch:prBranch
-    }, githubToken);
 
-
-
-    core.setOutput('orgin', mainBranchKey);
-    core.setOutput('fork', forkBranchKey);
-
-    if(mainBranchKey != forkBranchKey){
-      core.debug('Make Pull Request');
-
-         await forkBranchOctokit.request('POST /repos/' + prOwner + '/' + prRepository + '/merge-upstream', {
-            branch:prBranch
-        })
-
-        await forkBranchOctokit.request('POST /repos/' + prOwner + '/' + prRepository + '/pulls', {
-            head:prBranch,
-            base:prBaseBranch,
-            'title' : '<Pull Reuqest> merge Orign[' + mainBranchKey + ']'
-        })
-
-    }
+    core.setOutput(shaKey, branchKey);
 
   } catch (error) {
     core.error(error.message);
