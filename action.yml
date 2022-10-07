@@ -1,11 +1,23 @@
 name: 'Auto_Fork_PR_Generator'
 description: 'Auto Fork PR Generator'
 inputs:
-  github-token:
+  githubToken:
+    description: 'github token'
+    required: true
+  shaKey:
+    description: 'github token'
+    required: true
+  owner:
+    description: 'github token'
+    required: true
+  repository:
+    description: 'github token'
+    required: true
+  branch:
     description: 'github token'
     required: true
 outputs:
-  time: # output will be available to future steps
+  result: # output will be available to future steps
     description: 'The current time after waiting'
 runs:
   using: 'node12'
